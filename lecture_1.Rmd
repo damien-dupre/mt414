@@ -1,0 +1,717 @@
+---
+title: "MT414 - Workflow and Data Management"
+subtitle: "Publish your Markdown+Code with GitHub"
+author: "Damien Dupré - Dublin City University"
+output:
+  xaringan::moon_reader:
+    css: ["default", "metropolis", "metropolis-fonts", "css/custom_design.css"]
+    lib_dir: libs
+    nature:
+      beforeInit: "libs/cols_macro.js"
+      highlightStyle: zenburn
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r include = FALSE}
+# libraries --------------------------------------------------------------------
+library(anicon)
+library(countdown)
+library(fontawesome)
+library(gapminder)
+library(here)
+library(knitr)
+library(tidyverse)
+
+# chunk options ----------------------------------------------------------------
+opts_chunk$set(echo = FALSE)
+
+# functions --------------------------------------------------------------------
+include_img <- function(img_name) {
+  paste0("https://raw.githubusercontent.com/damien-dupre/img/main/", img_name) |> 
+  knitr::include_graphics()
+}
+```
+
+# Objectives
+
+--
+
+## 1. Create a html pages from your notebooks
+
+--
+
+## 2. Host your html pages on GitHub
+
+--
+
+## 3. Publish your html pages with GitHub pages
+
+--
+
+## Any questions?
+
+--
+
+
+## .center[**Then it's time to enter ...**]
+.center[
+```{r out.width='60%'}
+include_img("the_matrix.gif")
+```
+]
+
+---
+class: inverse, mline, center, middle
+
+# 1. Create a html pages from your notebooks
+
+---
+
+# Rendering notebooks
+
+Code files (like .py or .r) only contain code plus comments introduced by #
+
+Notebook files (like .ipynb, .Rmd, or .qmd) can contain both text and code.
+
+Rendering a notebook, is the activity of creating a shareable report from your notebook 
+
+Different format are possible: html, pdf, word, powerpoint ...
+
+The way to format text in a notebook to render it nicely uses a style called Markdown
+
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` **Warning**: you cannot share a notebook files with the format .ipynb, .Rmd, or .qmd, they are only for your own use or a team work.
+
+---
+
+# Emphasising Text
+
+.pull-left[
+<br><br>
+### What you type...
+<br>
+```
+
+this is *italics*
+
+this is **bold**
+
+this is ***bold italics***
+```
+]
+--
+.pull-right[
+<br><br>
+### What you get...
+<br>
+
+this is *italics*
+
+this is **bold**
+
+this is ***bold italics***
+]
+---
+
+# Creating Lists
+
+.pull-left[
+<br><br>
+### What you type...
+<br>
+```
+- unnumbered lists
+- look like this
+
+1. numbered lists
+2. look like this
+```
+]
+--
+.pull-right[
+<br><br>
+### What you get...
+<br>
+
+- unnumbered lists
+- look like this
+
+1. numbered lists
+2. look like this
+]
+
+---
+
+# Creating Headings
+
+.pull-left[
+<br><br>
+### What you type...
+<br>
+```
+# Level 1 heading
+## Level 2 heading
+### Level 3 heading
+
+```
+]
+--
+.pull-right[
+<br><br>
+### What you get...
+<br>
+
+## Level 1 heading
+### Level 2 heading
+#### Level 3 heading
+]
+
+---
+
+# Add Images
+
+.pull-left[
+<br><br>
+### What you type...
+<br>
+```
+![image](https://i.imgflip.com/3pw1vi.jpg)
+
+```
+]
+--
+.pull-right[
+<br><br>
+### What you get...
+<br>
+
+![image](https://i.imgflip.com/3pw1vi.jpg)
+]
+
+---
+
+# LaTeX Equations
+
+.pull-left[
+<br><br>
+### What you type...
+<br>
+```
+$$
+JS_i = b_0 + b_1 Salary_i + b_2 Perf_i + e_i
+$$
+
+$$
+e_{i} \sim \mathcal{N}(0, \sigma_{i})
+$$
+
+```
+]
+
+--
+.pull-right[
+<br><br>
+### What you get...
+<br>
+
+$$
+JS_i = b_0 + b_1 Salary_i + b_2 Perf_i + e_i
+$$
+
+$$
+e_i \sim \mathcal{N}(0, \sigma_i)
+$$
+
+]
+
+---
+
+# Markdown Example
+
+.pull-left[
+
+**Example of a markdown document...**
+
+```
+## Introduction
+
+
+
+Welcome to my **awesome** class. You 
+will learn all kinds of useful things 
+about Data Analytics.
+
+
+- Markdown is simple
+- You can add Python and R code
+- You can add $\LaTeX$ equations
+- you can add images:
+![image](https://i.imgflip.com/3pw1vi.jpg)
+
+```
+]
+
+.pull-right[
+
+**Here's what the output looks like...**
+
+## Introduction
+Welcome to my **awesome** class. You will learn all kinds of useful things about Data Analytics.
+
+- Markdown is simple
+- You can add Python and R code
+- You can add $\LaTeX$ equations
+- you can add images:
+![image](https://i.imgflip.com/3pw1vi.jpg)
+
+]
+
+---
+class: title-slide, middle
+
+## Your turn!
+
+1/ Go to https://colab.google/ and create a **New Notebook**
+
+2/ Create a Text chunk/cell which includes:
+  - a H1 title level with #
+  - a text with word in bold and italic using `**` or `*`
+  - any image from internet with `![](url.image)`
+  
+3/ Create a code chunk/cell with the following code:
+```
+import plotly.express as px
+fig = px.scatter(x=[0, 1, 2, 3, 4], y=[0, 1, 4, 9, 16])
+fig.show()
+```
+
+Note: the package plotly.express is already installed on the python env of colab
+
+```{r}
+countdown(minutes = 5, warn_when = 60)
+```
+
+---
+
+# Render a Notebook to html in Colab
+
+There is no native solution to render a Notebook to html in Colab, you need to use code.
+
+Once again, the internet is great and two videos with the same solution are short and well explained:
+- https://www.youtube.com/watch?v=1jplf4-ubt4
+- https://www.youtube.com/watch?v=LPGAGg3c8SE
+
+Here are the steps:
+
+1/ `File` > `Download` > `Download .ipynb`
+
+2/ In the Files menu, upload the .ipynb file you just have downloaded
+
+3/ Create a code chunk/cell with the following code:
+
+```
+! jupyter nbconvert --to html notebook_name.ipynb
+```
+
+4/ Refresh the list of files and eventually download the .html file created 
+
+---
+
+# Render a Notebook to html in Jupyter
+
+Jupyter is much more easier, just use `File` > `Download as` > `HTML (.html)`
+
+And this is it!
+
+---
+class: title-slide, middle
+
+## My turn!
+
+1/ Create new notebook with Jupyter on your local install or online with
+https://mybinder.org/v2/gh/ipython/ipython-in-depth/HEAD
+
+2/ Create a Text chunk/cell which includes:
+  - a H1 title level with #
+  - a text with word in bold and italic using `**` or `*`
+  - any image from internet with `![](url.image)`
+  
+3/ Create a code chunk/cell with the following code:
+```
+! pip install plotly_express
+import plotly.express as px
+fig = px.scatter(x=[0, 1, 2, 3, 4], y=[0, 1, 4, 9, 16])
+fig.show()
+```
+
+4/ Download the html file rendered from the notebook
+
+```{r}
+countdown(minutes = 5, warn_when = 60)
+```
+
+---
+class: title-slide, middle
+
+## Your turn!
+
+1/ Create new notebook with Jupyter on your local install or online with
+https://mybinder.org/v2/gh/ipython/ipython-in-depth/HEAD
+
+2/ Create a Text chunk/cell which includes:
+  - a H1 title level with #
+  - a text with word in bold and italic using `**` or `*`
+  - any image from internet with `![](url.image)`
+  
+3/ Create a code chunk/cell with the following code:
+```
+! pip install plotly_express
+import plotly.express as px
+fig = px.scatter(x=[0, 1, 2, 3, 4], y=[0, 1, 4, 9, 16])
+fig.show()
+```
+
+4/ Download the html file rendered from the notebook
+
+---
+
+The last tool for data analytics and visualisations displayed in this lectures is called **GitHub**.
+
+GitHub has a lot of different functions. For now, we will only see how to use it to **published the html document output from our Quarto file**.
+
+```{r}
+include_graphics("http://www.quickmeme.com/img/75/7509f68823389e4af3777ca6d3744c632cc32ab3547bc56e319126aa29ab149a.jpg")
+```
+
+---
+
+# What is GitHub
+
+Primary used to collaborate on code development, it became multi-purpose:
+
+- Version Control
+- File and Code Storage
+- Collaboration
+- Developers Social Media
+- Online Publication & Website Host
+- Automatic Actions
+
+And even more that I am not aware of!
+
+---
+
+# What is GitHub
+
+Primary used to collaborate on code development, it became multi-purpose:
+
+- Version Control
+- **File and Code Storage**
+- Collaboration
+- Developers Social Media
+- **Online Publication & Website Host**
+- Automatic Actions
+
+And even more that I am not aware of!
+
+---
+class: title-slide, middle
+
+## Exercise: Sign up to GitHub
+
+1/ Go to https://github.com and click **sign up**
+
+2/ Fill the information requested, find a **good user name** as it will be used for your default website (e.g., `firstname-name` is usually good)
+
+3/ Later, add a profile picture
+
+---
+
+# Welcome to GitHub
+
+```{r}
+include_graphics("https://miro.medium.com/v2/resize:fit:1400/1*cgJlPulU9t3djbf9TQ5sGA.gif")
+```
+
+---
+class: inverse, mline, center, middle
+
+# GitHub Repository
+
+---
+
+# How does GitHub Work?
+
+The core principle of GitHub is a remote desktop (or profile) with a folder called **Repository** for each project you are working on or you worked on (also called "Repo" if you want to use the slang).
+
+```{r}
+include_img("github_dd_profile.png")
+```
+
+---
+class: title-slide, middle
+
+## Exercise
+
+Follow the steps here after to **create your first repository**.
+
+---
+
+# GitHub Repositories
+
+[To create a Repository](https://docs.github.com/en/get-started/quickstart/create-a-repo):
+
+1/ In the upper-right corner of any page, use the `+` drop-down menu, and select New repository.
+
+```{r}
+include_graphics("https://docs.github.com/assets/cb-11427/mw-1000/images/help/repository/repo-create.webp")
+```
+
+---
+
+# GitHub Repositories
+
+```{r}
+include_graphics("https://git-scm.com/book/en/v2/images/newrepoform.png")
+```
+
+---
+
+# GitHub Repositories
+
+2/ **Type a short, memorable name** for your repository. For example, "hello-world".
+
+```{r}
+include_graphics("https://docs.github.com/assets/cb-25139/mw-1000/images/help/repository/create-repository-name.webp")
+```
+
+.pull-left[
+3/ **Optionally**, add a description of your repository. For example, "My first repository on GitHub." 
+]
+
+.pull-right[
+```{r}
+include_graphics("https://docs.github.com/assets/cb-26377/mw-1000/images/help/repository/create-repository-desc.webp")
+```
+]
+
+---
+
+# GitHub Repositories
+
+4/ **Choose a repository visibility**. For more information, see "About repositories." 
+
+```{r}
+include_graphics("https://docs.github.com/assets/cb-20877/mw-1000/images/help/repository/create-repository-public-private.webp")
+```
+
+5/ Tick **Add a README file**.
+
+6/ Click **Create repository**.
+
+Congratulations! You've successfully created your first repository, and initialized it with a README file.
+
+---
+class: inverse, mline, center, middle
+
+# GitHub Commit
+
+---
+
+# Always Commit Changes
+
+In GitHub, a commit is a saved change to a project's source code or other files. When you make changes to a file in a GitHub repository, you create a new version of that file. **Once you're ready to save those changes, you create a commit**.
+
+**A commit contains a snapshot of the changes** you've made to one or more files, along with a message that describes the changes. This **message should be descriptive and clear**, so that other developers can understand what changes you've made and why.
+
+Committing your changes to GitHub is an important part of collaborating with others on a project, as it allows other developers to **see what changes you've made** and merge them into the main project. Commits also make it easy to revert changes if necessary, since you can always go back to a previous commit in the project's history.
+
+> Everytime you want to take into account a change in your repository, you need to commit these changes
+
+---
+class: title-slide, middle
+
+## Exercise
+
+When you created your new repository, you initialized it with a README file. README files are a great place to describe your project in more detail, or add some documentation such as how to install or use your project. The contents of your README file are automatically shown on the front page of your repository.
+
+**Follow the steps here after to commit a change to the README file.**
+
+---
+
+# Commit the First Change
+
+1/ In your repository's list of files, **click README.md**. 
+
+```{r out.width='50%'}
+include_graphics("https://docs.github.com/assets/cb-44661/mw-1000/images/help/repository/create-commit-open-readme.webp")
+```
+
+---
+
+# Commit the First Change
+
+2/ In the upper right corner of the file view, **click the pen icon to open the file editor**.
+
+```{r out.width='80%'}
+include_graphics("https://docs.github.com/assets/cb-90977/mw-1000/images/help/repository/edit-file-edit-button.webp")
+```
+
+3/ In the text box, **type some information about the project**.
+
+4/ Above the new content, click **Preview**.
+
+```{r out.width='80%'}
+include_graphics("https://docs.github.com/assets/cb-66827/mw-1000/images/help/repository/edit-readme-preview-changes.webp")
+```
+
+---
+
+# Commit the First Change
+
+.pull-left[
+5/ **Review the changes** you made to the file. You will see the new content in green.
+
+6/ Click **Commit changes...**
+
+7/ In the "Commit message" field, type a short, meaningful **commit message** that describes the change you made to the file. 
+]
+
+.pull-right[
+```{r}
+include_graphics("https://docs.github.com/assets/cb-33561/mw-1000/images/help/repository/create-commit-review.webp")
+```
+]
+
+8/ Below the commit message fields, decide whether to add your commit to the current branch or to a new branch. Select **commit directly to the `main` branch** for now. 
+
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Warning: For collaborative projects never commit to the main branch
+
+9/ Click **Propose file change**.
+
+---
+class: title-slide, middle
+
+## Exercise
+
+**Fill you Repository up with the files** created when Rendering Quarto to html by following the steps described here after
+
+---
+
+# Fill up your Repository
+
+0/ (Only if you are using Rstudio in Posit cloud) **Export your Rstudio project folder from Posit cloud to your computer** and **unzip this folder on your computer**
+
+```{r}
+include_img("posit_cloud_export_project.gif")
+```
+
+---
+
+# Fill up your Repository
+
+1/ In your Repository Page in GitHub, Click **Add files** then **Upload files**
+
+2/ **Drop your entire unzipped folder** in the main box and **commit your changes**
+
+```{r}
+include_img("upload_project_github.gif")
+```
+
+---
+class: inverse, mline, center, middle
+
+# GitHub Pages
+
+---
+
+# GitHub Pages
+
+GitHub Pages is a **web hosting service** offered by GitHub that allows you to host static websites directly from a GitHub repository. This means you can use GitHub to store and version control your website's code, and then host it for free using GitHub Pages.
+
+GitHub Pages supports several **different types of websites, including personal or project pages**, documentation, blogs, and more. You can use custom domains or subdomains for your website, and GitHub Pages also supports HTTPS encryption for secure communication.
+
+To create a GitHub Pages website, you need to have a GitHub account and a r**epository containing your website's HTML, CSS, and other files**. Once you've created your repository and pushed your website's files to it, you can e**nable GitHub Pages in the repository settings**. Your website will then be published at a URL based on your GitHub username and repository name (e.g., username.github.io/repository).
+
+---
+
+# GitHub Pages
+
+```{r}
+include_graphics("https://miro.medium.com/v2/resize:fit:1400/format:webp/1*uHia-SKJPkWqbxbGJPfCCA.jpeg")
+```
+
+---
+class: title-slide, middle
+
+## Exercise
+
+Turn on GitHub Pages for your project repository:
+
+1/ Go to **Settings** and find **Pages** on the left pane
+
+2/ In **Branch**, instead of None select **Main** and click **Save**
+
+3/ Click on **Actions** and wait that "pages build and deployment" finishes. When it's done, go to **https://username.github.io/repository/**
+
+---
+class: inverse, mline, center, middle
+
+# Assignment 2 Brief
+
+---
+
+# Assignment Instructions
+
+### Context
+
+You are Data Analyst for the UNICEF organisation, and you have been asked to design a report to raise awareness of the public on a specific world issue.
+
+### Task
+
+Using the files that you already have received by email (i.e., one or both **unicef_indicator_1.csv** and **unicef_indicator_2.csv** files as well as **unicef_metadata.csv** file), **create a Quarto document that contains a story** (i.e., narrative) **and some visualisations** to support this story. **Render** this document as html and **publish it with GitHub Pages**.
+
+### Story
+
+You can copy-paste the exact same text included in your Tableau Dashboard assignment. You can also modify it or write a new one if you prefer. This story has to __use Markdown emphasis style__ (e.g., title levels, italic/bold font, list and bullet points, ...).
+
+---
+
+# Assignment Instructions
+
+.pull-left[
+### Visualisations
+
+They will have to be created with ggplot2. You need to __include 4 visualisations__:
+
+- A World Map chart,
+- A bar chart,
+- A scatterplot with a regression line,
+- A time-series chart.
+]
+
+.pull-right[
+### Assessment Criteria
+
+- Overall R code (25%)
+- Data transformations (25%)
+- Ggplot design (25%)
+- Markdown style (25%)
+]
+
+### Assessment Submission
+
+Submit the URL of your Quarto report published with GitHub Pages on the Assignment Upload module of the MT5000 Loop page
+
+**Deadline April 27th, 1pm**
+
+---
+class: inverse, mline, left, middle
+
+<img class="circle" src="https://github.com/damien-dupre.png" width="250px"/>
+
+# Thanks for your attention and don't hesitate to ask if you have any questions!
+
+[`r fa(name = "twitter")` @damien_dupre](http://twitter.com/damien_dupre)  
+[`r fa(name = "github")` @damien-dupre](http://github.com/damien-dupre)  
+[`r fa(name = "link")` damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
+[`r fa(name = "paper-plane")` damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
