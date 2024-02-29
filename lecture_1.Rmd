@@ -33,30 +33,48 @@ include_img <- function(img_name) {
 }
 ```
 
-# Objectives
+# Objectives for Today
 
 --
 
-## 1. Create a html pages from your notebooks
+### 1. Create a html pages from your notebooks
 
 --
 
-## 2. Host your html pages on GitHub
+### 2. Host your html pages on GitHub
 
 --
 
-## 3. Publish your html pages with GitHub pages
+### 3. Publish your html pages with GitHub pages
 
 --
 
-## Any questions?
+### Objectives for Next Week:
+- ### Creating a website
+- ### Hosting the website with GitHub
+- ### Modifying the website
+
+---
+
+# Requirements
+
+### 1. Find these slides @: 
+### https://damien-dupre.github.io/mt414/lecture_1
 
 --
 
+### 2. Open **jupyter** either on your local computer or online @:
+### https://mybinder.org/v2/gh/ipython/ipython-in-depth/HEAD
 
-## .center[**Then it's time to enter ...**]
+--
+
+### Any questions?
+
+--
+
+### .center[**Then, it's time to enter ...**]
 .center[
-```{r out.width='60%'}
+```{r out.width='40%'}
 include_img("the_matrix.gif")
 ```
 ]
@@ -70,79 +88,21 @@ class: inverse, mline, center, middle
 
 # Rendering notebooks
 
-Code files (like .py or .r) only contain code plus comments introduced by #
+- ### Code files (like .py or .r) only contain code plus comments introduced by `#`
 
-Notebook files (like .ipynb, .Rmd, or .qmd) can contain both text and code.
+- ### Notebook files (like .ipynb, .Rmd, or .qmd) can contain both text and code.
 
-Rendering a notebook, is the activity of creating a shareable report from your notebook 
+- ### Rendering a notebook, is the activity of creating a shareable report from your notebook 
 
-Different format are possible: html, pdf, word, powerpoint ...
+- ### Different format are possible: html, pdf, word, ...
 
-The way to format text in a notebook to render it nicely uses a style called Markdown
+- ### The way to format text in a notebook to render it nicely uses a style called **Markdown**
 
 `r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` **Warning**: you cannot share a notebook files with the format .ipynb, .Rmd, or .qmd, they are only for your own use or a team work.
 
 ---
 
-# Emphasising Text
-
-.pull-left[
-<br><br>
-### What you type...
-<br>
-```
-
-this is *italics*
-
-this is **bold**
-
-this is ***bold italics***
-```
-]
---
-.pull-right[
-<br><br>
-### What you get...
-<br>
-
-this is *italics*
-
-this is **bold**
-
-this is ***bold italics***
-]
----
-
-# Creating Lists
-
-.pull-left[
-<br><br>
-### What you type...
-<br>
-```
-- unnumbered lists
-- look like this
-
-1. numbered lists
-2. look like this
-```
-]
---
-.pull-right[
-<br><br>
-### What you get...
-<br>
-
-- unnumbered lists
-- look like this
-
-1. numbered lists
-2. look like this
-]
-
----
-
-# Creating Headings
+# Markdown: Creating Headings
 
 .pull-left[
 <br><br>
@@ -168,15 +128,19 @@ this is ***bold italics***
 
 ---
 
-# Add Images
+# Markdown: Emphasising Text
 
 .pull-left[
 <br><br>
 ### What you type...
 <br>
 ```
-![image](https://i.imgflip.com/3pw1vi.jpg)
 
+this is *italics*
+
+this is **bold**
+
+this is ***bold italics***
 ```
 ]
 --
@@ -185,43 +149,61 @@ this is ***bold italics***
 ### What you get...
 <br>
 
-![image](https://i.imgflip.com/3pw1vi.jpg)
+this is *italics*
+
+this is **bold**
+
+this is ***bold italics***
+]
+---
+
+# Markdown: Creating Lists
+
+.pull-left[
+<br><br>
+### What you type...
+<br>
+```
+- unnumbered lists
+- look like this
+
+1. numbered lists
+2. look like this
+```
+]
+--
+.pull-right[
+<br><br>
+### What you get...
+<br>
+
+- unnumbered lists
+- look like this
+
+1. numbered lists
+2. look like this
 ]
 
 ---
 
-# LaTeX Equations
+# Markdown: Add Images
 
 .pull-left[
 <br><br>
 ### What you type...
 <br>
 ```
-$$
-JS_i = b_0 + b_1 Salary_i + b_2 Perf_i + e_i
-$$
-
-$$
-e_{i} \sim \mathcal{N}(0, \sigma_{i})
-$$
+![ ](https://i.imgflip.com/3pw1vi.jpg)
 
 ```
 ]
-
 --
 .pull-right[
 <br><br>
 ### What you get...
 <br>
 
-$$
-JS_i = b_0 + b_1 Salary_i + b_2 Perf_i + e_i
-$$
-
-$$
-e_i \sim \mathcal{N}(0, \sigma_i)
-$$
-
+![ ](https://i.imgflip.com/3pw1vi.jpg)
 ]
 
 ---
@@ -246,7 +228,7 @@ about Data Analytics.
 - You can add Python and R code
 - You can add $\LaTeX$ equations
 - you can add images:
-![image](https://i.imgflip.com/3pw1vi.jpg)
+![ ](https://i.imgflip.com/3pw1vi.jpg)
 
 ```
 ]
@@ -262,92 +244,20 @@ Welcome to my **awesome** class. You will learn all kinds of useful things about
 - You can add Python and R code
 - You can add $\LaTeX$ equations
 - you can add images:
-![image](https://i.imgflip.com/3pw1vi.jpg)
+![ ](https://i.imgflip.com/3pw1vi.jpg)
 
 ]
-
----
-class: title-slide, middle
-
-## Your turn!
-
-1/ Go to https://colab.google/ and create a **New Notebook**
-
-2/ Create a Text chunk/cell which includes:
-  - a H1 title level with #
-  - a text with word in bold and italic using `**` or `*`
-  - any image from internet with `![](url.image)`
-  
-3/ Create a code chunk/cell with the following code:
-```
-import plotly.express as px
-fig = px.scatter(x=[0, 1, 2, 3, 4], y=[0, 1, 4, 9, 16])
-fig.show()
-```
-
-Note: the package plotly.express is already installed on the python env of colab
-
-```{r}
-countdown(minutes = 5, warn_when = 60)
-```
-
----
-
-# Render a Notebook to html in Colab
-
-There is no native solution to render a Notebook to html in Colab, you need to use code.
-
-Once again, the internet is great and two videos with the same solution are short and well explained:
-- https://www.youtube.com/watch?v=1jplf4-ubt4
-- https://www.youtube.com/watch?v=LPGAGg3c8SE
-
-Here are the steps:
-
-1/ `File` > `Download` > `Download .ipynb`
-
-2/ In the Files menu, upload the .ipynb file you just have downloaded
-
-3/ Create a code chunk/cell with the following code:
-
-```
-! jupyter nbconvert --to html notebook_name.ipynb
-```
-
-4/ Refresh the list of files and eventually download the .html file created 
 
 ---
 
 # Render a Notebook to html in Jupyter
 
-Jupyter is much more easier, just use `File` > `Download as` > `HTML (.html)`
+### Just use `File` > `Download as` > `HTML (.html)`
 
-And this is it!
-
----
-class: title-slide, middle
-
-## My turn!
-
-1/ Create new notebook with Jupyter on your local install or online with
-https://mybinder.org/v2/gh/ipython/ipython-in-depth/HEAD
-
-2/ Create a Text chunk/cell which includes:
-  - a H1 title level with #
-  - a text with word in bold and italic using `**` or `*`
-  - any image from internet with `![](url.image)`
-  
-3/ Create a code chunk/cell with the following code:
-```
-! pip install plotly_express
-import plotly.express as px
-fig = px.scatter(x=[0, 1, 2, 3, 4], y=[0, 1, 4, 9, 16])
-fig.show()
-```
-
-4/ Download the html file rendered from the notebook
+### And this is it!
 
 ```{r}
-countdown(minutes = 5, warn_when = 60)
+include_graphics("https://pbs.twimg.com/media/DGNoBBsXgAEH3uK?format=jpg&name=small")
 ```
 
 ---
@@ -355,15 +265,15 @@ class: title-slide, middle
 
 ## Your turn!
 
-1/ Create new notebook with Jupyter on your local install or online with
-https://mybinder.org/v2/gh/ipython/ipython-in-depth/HEAD
+1/ Create a **New Jupyter Notebook**
 
 2/ Create a Text chunk/cell which includes:
-  - a H1 title level with #
+  - a H1 title level with `#`
   - a text with word in bold and italic using `**` or `*`
-  - any image from internet with `![](url.image)`
+  - any image from internet with `![ ](url.image)`
+
   
-3/ Create a code chunk/cell with the following code:
+3/ Create a Code chunk/cell with the following code:
 ```
 ! pip install plotly_express
 import plotly.express as px
@@ -371,13 +281,22 @@ fig = px.scatter(x=[0, 1, 2, 3, 4], y=[0, 1, 4, 9, 16])
 fig.show()
 ```
 
-4/ Download the html file rendered from the notebook
+4/ Run both chunks/cells and download the .html file
+
+```{r}
+countdown(minutes = 5, warn_when = 60)
+```
+
+---
+class: inverse, mline, center, middle
+
+# 2. Host your html pages on GitHub
 
 ---
 
-The last tool for data analytics and visualisations displayed in this lectures is called **GitHub**.
+# GitHub
 
-GitHub has a lot of different functions. For now, we will only see how to use it to **published the html document output from our Quarto file**.
+#### GitHub has a lot of different functions. For now, we will only see how to use it to **published the html document output from our notebook file**.
 
 ```{r}
 include_graphics("http://www.quickmeme.com/img/75/7509f68823389e4af3777ca6d3744c632cc32ab3547bc56e319126aa29ab149a.jpg")
@@ -387,22 +306,22 @@ include_graphics("http://www.quickmeme.com/img/75/7509f68823389e4af3777ca6d3744c
 
 # What is GitHub
 
-Primary used to collaborate on code development, it became multi-purpose:
+### Primary used to collaborate on code development, it became multi-purpose:
 
 - Version Control
 - File and Code Storage
-- Collaboration
-- Developers Social Media
+- Collaboration Projects
+- Social Media for Developers
 - Online Publication & Website Host
 - Automatic Actions
 
-And even more that I am not aware of!
+### And even more that I am not aware of!
 
 ---
 
 # What is GitHub
 
-Primary used to collaborate on code development, it became multi-purpose:
+### Primary used to collaborate on code development, it became multi-purpose:
 
 - Version Control
 - **File and Code Storage**
@@ -411,18 +330,20 @@ Primary used to collaborate on code development, it became multi-purpose:
 - **Online Publication & Website Host**
 - Automatic Actions
 
-And even more that I am not aware of!
+### And even more that I am not aware of!
 
 ---
 class: title-slide, middle
 
-## Exercise: Sign up to GitHub
+## Your turn!
 
-1/ Go to https://github.com and click **sign up**
+1/ Go to https://github.com and click **sign in** (or sign up if you haven't already done it)
 
-2/ Fill the information requested, find a **good user name** as it will be used for your default website (e.g., `firstname-name` is usually good)
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Note: Your user name will become extremely important in your future, `firstname-name` is usually good
 
-3/ Later, add a profile picture
+```{r}
+countdown(minutes = 2, warn_when = 60)
+```
 
 ---
 
@@ -433,15 +354,10 @@ include_graphics("https://miro.medium.com/v2/resize:fit:1400/1*cgJlPulU9t3djbf9T
 ```
 
 ---
-class: inverse, mline, center, middle
-
-# GitHub Repository
-
----
 
 # How does GitHub Work?
 
-The core principle of GitHub is a remote desktop (or profile) with a folder called **Repository** for each project you are working on or you worked on (also called "Repo" if you want to use the slang).
+#### The core principle of GitHub is a remote desktop (or profile) with a folder called **Repository** for each project you are working on or you worked on (also called "Repo" if you want to use the slang).
 
 ```{r}
 include_img("github_dd_profile.png")
@@ -450,7 +366,7 @@ include_img("github_dd_profile.png")
 ---
 class: title-slide, middle
 
-## Exercise
+## Your turn!
 
 Follow the steps here after to **create your first repository**.
 
@@ -481,56 +397,44 @@ include_graphics("https://git-scm.com/book/en/v2/images/newrepoform.png")
 2/ **Type a short, memorable name** for your repository. For example, "hello-world".
 
 ```{r}
-include_graphics("https://docs.github.com/assets/cb-25139/mw-1000/images/help/repository/create-repository-name.webp")
+include_graphics("https://docs.github.com/assets/cb-61138/mw-1440/images/help/repository/create-repository-name.webp")
 ```
 
-.pull-left[
 3/ **Optionally**, add a description of your repository. For example, "My first repository on GitHub." 
-]
 
-.pull-right[
-```{r}
-include_graphics("https://docs.github.com/assets/cb-26377/mw-1000/images/help/repository/create-repository-desc.webp")
-```
-]
 
 ---
 
 # GitHub Repositories
 
-4/ **Choose a repository visibility**. For more information, see "About repositories." 
-
-```{r}
-include_graphics("https://docs.github.com/assets/cb-20877/mw-1000/images/help/repository/create-repository-public-private.webp")
-```
+4/ **Choose a PUBLIC repository visibility**. For more information, see "About repositories." 
 
 5/ Tick **Add a README file**.
 
 6/ Click **Create repository**.
 
-Congratulations! You've successfully created your first repository, and initialized it with a README file.
+### Congratulations! You've successfully created your first repository, and initialized it with a README file.
 
----
-class: inverse, mline, center, middle
-
-# GitHub Commit
+.center[
+```{r out.width='50%'}
+include_graphics("https://external-preview.redd.it/H3X9ghkU1diDoEaB2j6OLakfRVvtelkI-VVCAMvpHFw.jpg?auto=webp&s=812777b2de31ed351475ecfb9cfe91a74931201b")
+```
+]
 
 ---
 
 # Always Commit Changes
 
-In GitHub, a commit is a saved change to a project's source code or other files. When you make changes to a file in a GitHub repository, you create a new version of that file. **Once you're ready to save those changes, you create a commit**.
+In GitHub, a commit is a saved change to a project's source code or other files. When you make changes to a file in a GitHub repository, you create a new version of that file. 
 
 **A commit contains a snapshot of the changes** you've made to one or more files, along with a message that describes the changes. This **message should be descriptive and clear**, so that other developers can understand what changes you've made and why.
 
-Committing your changes to GitHub is an important part of collaborating with others on a project, as it allows other developers to **see what changes you've made** and merge them into the main project. Commits also make it easy to revert changes if necessary, since you can always go back to a previous commit in the project's history.
-
-> Everytime you want to take into account a change in your repository, you need to commit these changes
+### Everytime you want to take into account a change in your repository, you need to commit these changes
 
 ---
 class: title-slide, middle
 
-## Exercise
+## Your turn!
 
 When you created your new repository, you initialized it with a README file. README files are a great place to describe your project in more detail, or add some documentation such as how to install or use your project. The contents of your README file are automatically shown on the front page of your repository.
 
@@ -543,7 +447,7 @@ When you created your new repository, you initialized it with a README file. REA
 1/ In your repository's list of files, **click README.md**. 
 
 ```{r out.width='50%'}
-include_graphics("https://docs.github.com/assets/cb-44661/mw-1000/images/help/repository/create-commit-open-readme.webp")
+include_graphics("https://docs.github.com/assets/cb-21025/mw-1440/images/help/repository/create-commit-open-readme.webp")
 ```
 
 ---
@@ -553,7 +457,7 @@ include_graphics("https://docs.github.com/assets/cb-44661/mw-1000/images/help/re
 2/ In the upper right corner of the file view, **click the pen icon to open the file editor**.
 
 ```{r out.width='80%'}
-include_graphics("https://docs.github.com/assets/cb-90977/mw-1000/images/help/repository/edit-file-edit-button.webp")
+include_graphics("https://docs.github.com/assets/cb-47677/mw-1440/images/help/repository/edit-file-edit-button.webp")
 ```
 
 3/ In the text box, **type some information about the project**.
@@ -561,7 +465,7 @@ include_graphics("https://docs.github.com/assets/cb-90977/mw-1000/images/help/re
 4/ Above the new content, click **Preview**.
 
 ```{r out.width='80%'}
-include_graphics("https://docs.github.com/assets/cb-66827/mw-1000/images/help/repository/edit-readme-preview-changes.webp")
+include_graphics("https://docs.github.com/assets/cb-35443/mw-1440/images/help/repository/edit-readme-preview-changes.webp")
 ```
 
 ---
@@ -591,36 +495,15 @@ include_graphics("https://docs.github.com/assets/cb-33561/mw-1000/images/help/re
 ---
 class: title-slide, middle
 
-## Exercise
+## Your turn!
 
-**Fill you Repository up with the files** created when Rendering Quarto to html by following the steps described here after
+1/ In your Repository Page in GitHub, Click `Add files` then on `Upload files`
 
----
-
-# Fill up your Repository
-
-0/ (Only if you are using Rstudio in Posit cloud) **Export your Rstudio project folder from Posit cloud to your computer** and **unzip this folder on your computer**
+2/ **Drop** or **choose** your html file in the main box and **commit your changes**
 
 ```{r}
-include_img("posit_cloud_export_project.gif")
+countdown(minutes = 2, warn_when = 60)
 ```
-
----
-
-# Fill up your Repository
-
-1/ In your Repository Page in GitHub, Click **Add files** then **Upload files**
-
-2/ **Drop your entire unzipped folder** in the main box and **commit your changes**
-
-```{r}
-include_img("upload_project_github.gif")
-```
-
----
-class: inverse, mline, center, middle
-
-# GitHub Pages
 
 ---
 
@@ -628,22 +511,16 @@ class: inverse, mline, center, middle
 
 GitHub Pages is a **web hosting service** offered by GitHub that allows you to host static websites directly from a GitHub repository. This means you can use GitHub to store and version control your website's code, and then host it for free using GitHub Pages.
 
-GitHub Pages supports several **different types of websites, including personal or project pages**, documentation, blogs, and more. You can use custom domains or subdomains for your website, and GitHub Pages also supports HTTPS encryption for secure communication.
+Your website will then be published at a URL based on your GitHub username and repository name (e.g., **username.github.io/repository**).
 
-To create a GitHub Pages website, you need to have a GitHub account and a r**epository containing your website's HTML, CSS, and other files**. Once you've created your repository and pushed your website's files to it, you can e**nable GitHub Pages in the repository settings**. Your website will then be published at a URL based on your GitHub username and repository name (e.g., username.github.io/repository).
-
----
-
-# GitHub Pages
-
-```{r}
+```{r out.width='50%'}
 include_graphics("https://miro.medium.com/v2/resize:fit:1400/format:webp/1*uHia-SKJPkWqbxbGJPfCCA.jpeg")
 ```
 
 ---
 class: title-slide, middle
 
-## Exercise
+## Your turn!
 
 Turn on GitHub Pages for your project repository:
 
@@ -651,58 +528,9 @@ Turn on GitHub Pages for your project repository:
 
 2/ In **Branch**, instead of None select **Main** and click **Save**
 
-3/ Click on **Actions** and wait that "pages build and deployment" finishes. When it's done, go to **https://username.github.io/repository/**
+3/ Click on **Actions** and wait that "pages build and deployment" finishes. 
 
----
-class: inverse, mline, center, middle
-
-# Assignment 2 Brief
-
----
-
-# Assignment Instructions
-
-### Context
-
-You are Data Analyst for the UNICEF organisation, and you have been asked to design a report to raise awareness of the public on a specific world issue.
-
-### Task
-
-Using the files that you already have received by email (i.e., one or both **unicef_indicator_1.csv** and **unicef_indicator_2.csv** files as well as **unicef_metadata.csv** file), **create a Quarto document that contains a story** (i.e., narrative) **and some visualisations** to support this story. **Render** this document as html and **publish it with GitHub Pages**.
-
-### Story
-
-You can copy-paste the exact same text included in your Tableau Dashboard assignment. You can also modify it or write a new one if you prefer. This story has to __use Markdown emphasis style__ (e.g., title levels, italic/bold font, list and bullet points, ...).
-
----
-
-# Assignment Instructions
-
-.pull-left[
-### Visualisations
-
-They will have to be created with ggplot2. You need to __include 4 visualisations__:
-
-- A World Map chart,
-- A bar chart,
-- A scatterplot with a regression line,
-- A time-series chart.
-]
-
-.pull-right[
-### Assessment Criteria
-
-- Overall R code (25%)
-- Data transformations (25%)
-- Ggplot design (25%)
-- Markdown style (25%)
-]
-
-### Assessment Submission
-
-Submit the URL of your Quarto report published with GitHub Pages on the Assignment Upload module of the MT5000 Loop page
-
-**Deadline April 27th, 1pm**
+4/When it's done, go to **https://username.github.io/repository/nameofyourfile.html**
 
 ---
 class: inverse, mline, left, middle
