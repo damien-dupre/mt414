@@ -265,23 +265,39 @@ class: title-slide, middle
 
 ## Your turn!
 
+.pull-left[
 1/ Create a **New Jupyter Notebook**
 
-2/ Create a Text chunk/cell which includes:
-  - a H1 title level with `#`
-  - a text with word in bold and italic using `**` or `*`
-  - any image from internet with `![ ](url.image)`
+2/ Create a **Text cell** which includes:
+```markdown
+## Introduction
 
-  
-3/ Create a Code chunk/cell with the following code:
+Welcome to my **awesome** class. You 
+will learn all kinds of useful things 
+about Data Analytics.
+
+- Markdown is simple
+- You can add Python and R code
+- You can add $\LaTeX$ equations
+- you can add images:
+![ ](https://i.imgflip.com/3pw1vi.jpg)
+
 ```
+]
+
+.pull-right[
+3/ Create a **Code cell** with the following code:
+```markdown
 ! pip install plotly_express
 import plotly.express as px
-fig = px.scatter(x=[0, 1, 2, 3, 4], y=[0, 1, 4, 9, 16])
+fig = px.scatter(
+  x=[0, 1, 2, 3, 4], 
+  y=[0, 1, 4, 9, 16])
 fig.show()
 ```
 
-4/ Run both chunks/cells and download the .html file
+4/ Run both cells and download the `.html` file
+]
 
 ```{r}
 countdown(minutes = 5, warn_when = 60)
