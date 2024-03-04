@@ -36,14 +36,13 @@ include_img <- function(img_name) {
 # Objectives for Today
 
 .pull-left[
-### 1. Create a website with Markdown and Python Code embedded 
+### 1. Introducing Quarto
 
-### 2. Publish this website on GitHub
+### 2. Create a website with Markdown and Python Code embedded 
 
-### 3. Update this website
+### 3. Publish this website on GitHub
+
 ]
-
---
 
 .pull-right[
 ```{r out.width='100%'}
@@ -54,7 +53,7 @@ include_graphics("https://pbs.twimg.com/media/FmXyCFmXgAA6O_N?format=jpg&name=la
 ---
 class: inverse, mline, center, middle
 
-# 1. Create a website with Markdown and Python Code embedded 
+# 1. Introducing Quarto
 
 ---
 
@@ -90,7 +89,7 @@ All are using the same technology called Quarto!
 Quarto is an open-source scientific and technical publishing system that builds on standard markdown with features essential for scientific communication.
 
 - Computations: Python, R, Julia, Observable JS
-- Markdown: Pandoc flavored markdown with many enhancements
+- Markdown: Pandoc flavoured markdown with many enhancements
 - Output: Documents, presentations, websites, books, blogs
 
 See https://quarto.org for more details
@@ -100,7 +99,7 @@ See https://quarto.org for more details
 The Goal is to create a document that is all-in-one
 
 - Documents that include source code for their production
-- Notebook AND plain-text flavors
+- Notebook AND plain-text flavours
 - Programmatic automation and reproducibility
 
 --
@@ -108,69 +107,21 @@ The Goal is to create a document that is all-in-one
 And it has a template for websites, see tutorial here: https://adtarie.net/posts/007-quarto-python-tutorial/
 
 ---
+class: title-slide, middle
 
-# Simple Example
+## Your turn!
 
-.pull-left.verysmall[
-````markdown
----
-title: "Untitled"
-format: html
----
+1/ Download and install the quarto version you need from here: https://quarto.org/docs/get-started/
+- Ubuntu 18+/Debian 10+	
+- Linux Arm64	
+- Mac OS	
+- Windows
 
-## Quarto
-
-Quarto enables you to weave together content and 
-executable code into a finished document. To learn 
-more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document 
-will be generated that includes both content and 
-the output of embedded code. You can embed code 
-like this:
+2/ Open a terminal window and type `quarto check`
 
 ```{r}
-1 + 1
+countdown(minutes = 5, warn_when = 60)
 ```
-
-You can add options to executable code like this 
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of 
-code (only output is displayed).
-
-````
-]
-
-.pull-right[
-```{r}
-include_img("quarto_create.png")
-```
-]
-
----
-
-# Quarto Structure
-
-Quarto files have 3 different types of content:
-
-#### 1. The YAML
-
-Displayed between two series of `---` signs, it corresponds to the metadata shown in the header of the output file (e.g., title, author, date, ...) and the type of output (e.g., pdf, html, doc, ...)
-
-#### 2. The Text
-
-Written in Markdown style (i.e., text without formatting), it is used as core description in the output document
-
-#### 3. The Code
-
-Inserted in the Quarto inside "chunks", the code is processed when creating the output and can display figures and tables
 
 ---
 
@@ -181,6 +132,24 @@ include_graphics("https://quarto.org/docs/get-started/hello/images/jupyter-quart
 ```
 
 ---
+
+# Quarto Structure
+
+Quarto files have 3 different types of content:
+
+#### 1. The YAML
+
+In a cell of type "Raw", displayed between two series of `---` signs, it corresponds to the metadata shown in the header of the output file (e.g., title, author, date, ...) and the type of output (e.g., pdf, html, doc, ...)
+
+#### 2. The Text
+
+Written in Markdown style (i.e., text without formatting), it is used as core description in the output document
+
+#### 3. The Code
+
+Inserted in the Quarto inside code cells, the code is processed when creating the output and can display figures and tables
+
+---
 class: inverse, mline, center, middle
 
 # 1. The YAML
@@ -189,6 +158,7 @@ class: inverse, mline, center, middle
 
 # Output HTML
 
+.pull-left[
 ### Simple
 
 ```
@@ -196,38 +166,43 @@ class: inverse, mline, center, middle
 format: html
 ---
 ```
+]
 
---
-
+.pull-right[
 ### Default
 
 ```
 ---
-title: "My First Quarto Document"
+title: Quarto Basics
 format: html
 date: "99/99/9999"
 ---
 ```
+]
 
 --
 
-### Elaborated
+.pull-left[
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` **Warning**: indentation is very important, every line finishing with `:` involves 1 Tab indentation on the following line.
+]
 
+.pull-right[
 ```
 ---
-title: "My First Quarto Document"
-subtitle: "My Subtitle"
-author: "Damien Dupre"
+title: Quarto Basics
 date: "99/99/9999"
-format: html
+format: 
+  html:
+    code-fold: true
 ---
 ```
+]
 
 ---
 
 # Execute Python Code
 
-Quarto can use R or Python to execute code:
+Quarto can use R or Python to execute code
 
 - Python code is executed natively with the `python3` engine
 
@@ -241,23 +216,7 @@ engine: python3
 
 ```yaml
 ---
-engine: jupyter
----
-```
-
----
-
-# Execute Code
-
-Quarto also introduces some of these as options for `execute:` in YAML, for similar concepts in other languages.
-
-```yaml
----
-format: html
-execute:
-  echo: false
-  warning: false
-  message: false
+jupyter: python3
 ---
 ```
 
@@ -270,62 +229,21 @@ class: inverse, mline, center, middle
 
 class: inverse, mline, center, middle
 
-# 3. The Python Code Chunks 
+# 3. The Python Code Cells 
 
 ---
 
-# Anatomy of a Code Chunk
+# Anatomy of a Code Cell
 
-````markdown
-`r ''````{py}
-#| label: gapminder-pop
+```markdown
+#| label: hello-world
 #| echo: false
 print('Hello, world!')
 ```
-```` 
 
-- Has 3x backticks on each end ` ``` ` 
-- Place engine (`py`) between curly braces `{py}`  
-- Place options underneath, behind the `#|` (hashpipe): `#| option1: value`  
+Place options underneath, behind the `#|` (hashpipe): `#| option1: value`  
 
----
-
-# First Code Chunk
-
-In the first code chunk, will be added all the __actions that will be applied to the following chunks__ (e.g., code option, library used, data downloaded, ...).
-
-````markdown
-`r ''````{py}
-#| label: setup
-#| include: false
-
-# libraries
-import pandas as pd
-import plotly.express as px  
-# code
-mydataset = {
-  'cars': ["BMW", "Volvo", "Ford"],
-  'passings': [3, 7, 2]
-}
-myvar = pd.DataFrame(mydataset)
-print(myvar)
-fig = px.scatter(x=[0, 1, 2, 3, 4], y=[0, 1, 4, 9, 16])
-fig.show()
-```
-
-````
-
----
-
-# Code Chunk Options
-
-Chunk output can be customized with hashpipe options (i.e., arguments set after the `#|`). Above, we use 1 argument:
-
-- `#| include: false` prevents code and results from appearing in the finished file. Quarto still runs the code in the chunk, and the results can be used by other chunks.
-
-Additional options can be turned on only for one chunk:
-
-- `#| echo: true` will display the code and the results in the finished file (it overwrite `echo: false` set in the YAML for this chunk only)
+Cells output can be customized with this hashpipe options (i.e., arguments set after the `#|`). Above, we use 1 argument:
 
 See the **[Quarto Reference Guide](https://quarto.org/docs/reference/cells/cells-knitr.html)** for a complete list of chunk options.
 
@@ -333,41 +251,39 @@ See the **[Quarto Reference Guide](https://quarto.org/docs/reference/cells/cells
 
 # Figures in the Output Document
 
-As long as the data frame object created in the first setup chunk, then a __visualisation can be used in a separated chunk__:
+As long as the data frame object created in the first setup chunk, then a __visualisation can be used in a separated cell__:
 
 .small[
-````markdown
+```yaml
 ---
 title: "Untitled"
-output: html
-execute:
-  echo: false
-  warning: false
-  message: false
+format: html
+jupyter: python3
 ---
-
-`r ''````{py}
+```
+```markdown
 # libraries
 import plotly.express as px  
 # code
 fig = px.scatter(x=[0, 1, 2, 3, 4], y=[0, 1, 4, 9, 16])
 ```
-
+```
 # My Section Title
 
 My text followed by my figure.
+```
 
-`r ''````{py}
+```markdown
 fig.show()
 ```
-````
+
 ]
 
 ---
 
 # Visualisation Specific Options
 
-Some chunk options are specific to visualisations outputs:
+Some cell options are specific to visualisations outputs:
 
 - fig-cap: "caption of the figure"
 - fig-height: 5
@@ -375,15 +291,274 @@ Some chunk options are specific to visualisations outputs:
 
 Note, the default unit for height and width is inches.
 
-````markdown
-`r ''````{py}
+```markdown
 #| fig-cap: "caption of the figure"
 #| fig-height: 5
 #| fig-width: 5
 
 fig.show()
 ```
-````
+
+---
+
+# Quarto platforms
+
+Quarto can be used with any platform.
+
+A tutorial is offered for the following ones at https://quarto.org/docs/get-started/hello:
+
+.center[
+```{r out.width='80%'}
+include_img("quarto_platform.png")
+```
+]
+
+But, once again, because it's the most common, we will see how to use it with jupyter.
+
+.center[
+```{r out.width='40%'}
+include_graphics("https://www.jumpingrivers.com/blog/reproducible-reports-jupyter-quarto-python/graphics/featured-high-res.png")
+```
+]
+
+---
+class: title-slide, middle
+
+## Your turn!
+
+1/ Download the file `hello.ipynb` 
+- from here: https://quarto.org/docs/get-started/hello/jupyter.html
+- or by clicking here: <a href="https://quarto.org/docs/get-started/hello/_hello.ipynb" download="hello.ipynb" data-original-href="https://quarto.org/docs/get-started/hello/_hello.ipynb">Download hello.ipynb</a>
+
+2/ Open Jupyter Lab and drop the `hello.ipynb` in the list of files (left pane)
+
+3/ Open a new Terminal window (on Jupyter Lab or on your OS) and run the following instructions:
+
+```markdown
+quarto render hello.ipynb --to html
+```
+
+and then:
+
+```markdown
+open hello.html
+```
+
+```{r}
+countdown(minutes = 5, warn_when = 60)
+```
+
+---
+class: inverse, mline, center, middle
+
+# 2. Create a website with Markdown and Python Code embedded
+
+---
+
+# Quarto Websites
+
+Quarto Websites are a convenient way to publish groups of documents. Documents published as part of a website share navigational elements, rendering options, and visual style.
+
+Website navigation can be provided through a global navbar, a sidebar with links, or a combination of both for sites that have multiple levels of content. You can also enable full text search for websites.
+
+---
+class: title-slide, middle
+
+## Your turn!
+
+1/ Open a new Terminal window (on Jupyter Lab or on your OS) and run the following instructions:
+
+```markdown
+quarto create project website mysite
+```
+
+and then:
+
+```markdown
+quarto preview mysite
+```
+
+```{r}
+countdown(minutes = 2, warn_when = 60)
+```
+
+---
+
+# Quarto Websites
+
+```markdown
+quarto create project website mysite
+```
+
+Creates a new website project from the Terminal. This website project is initiated by a folder called `mysite` located on the root of your terminal.
+
+--
+
+The folder contains only 4 files:
+- `_quarto.yml` is a yaml file, it design the overall style and the navbar
+- `index.qmd` is a quarto file, it corresponds to the homepage
+- `about.qmd` is another quarto file which is displayed when about is clicked on the navbar
+- `styles.css` is for additional style not defined in `_quarto.yml`
+
+--
+
+Improve your Website:
+
+- Navigation instructions here: https://quarto.org/docs/websites/website-navigation.html
+- Option instructions here: https://quarto.org/docs/reference/projects/websites.html
+
+---
+
+# Quarto Websites
+
+```markdown
+quarto preview mysite
+```
+
+This command is used to render the website by converting all the `.qmd` files to `.html` files stored in a `_site` folder. 
+
+The website preview will open in a new web browser. As you edit and save `index.qmd` (or other files like `about.qmd`) the preview is automatically updated.
+
+---
+
+# qmd Files
+
+Unfortunately `.ipynb` or `.py` files cannot be used to build a website. 
+
+Thankfully they can be converted to `.qmd` format by quarto with the instruction: 
+
+```markdown
+quarto convert myfile.ipynb
+```
+--
+
+`.qmd` are actually very similar to `.ipynb` tailored for quarto:
+- They have a yaml displayed between two series of `---` signs
+- They have markdown text
+- They can have code cell, also called chunks
+
+--
+
+Chunks are delimited by 3 backticks on each end ` ``` ` followed by the engine (`python`) between curly braces `{python}`  
+
+````markdown
+`r ''````{python}
+print('Hello, world!')
+```
+```` 
+
+---
+class: title-slide, middle
+
+## Your turn!
+
+1/ Open a new Terminal window (on Jupyter Lab or on your OS) and run the following instructions:
+
+```markdown
+quarto convert hello.ipynb
+```
+
+2/ Drag and drop the file `hello.qmd` created in the root of the `mysite` folder
+
+3/ Open the file `_quarto.yml` in Jupyter and modify it as follow:
+
+```markdown
+website:
+  title: "Mysite"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+      - hello.qmd
+```
+
+4/ In the Terminal window, run the following instructions if it hasn't been done already
+
+```markdown
+quarto preview mysite
+```
+
+```{r}
+countdown(minutes = 10, warn_when = 60)
+```
+
+---
+class: inverse, mline, center, middle
+
+# 3. Publish this website on GitHub
+
+---
+
+# Overview
+
+There are three ways to publish Quarto websites and documents to GitHub Pages:
+
+- Render sites on your local machine to the docs directory, check the rendered site into GitHub, and then configure your GitHub repo to publish from the docs directory.
+
+- Use the quarto publish command to publish content rendered on your local machine.
+
+- Use a GitHub Action to automatically render your files (a single Quarto document or a Quarto project) and publish the resulting content whenever you push a source code change to your repository.
+
+The simplest way to publish using GitHub Pages is to render to the docs directory and then check that directory into your repository.
+
+---
+
+# Requirements
+
+To publish using GitHub Pages, there are 2 requirements:
+
+1/ The output directory should be changed to a folder named `docs` in the `_quarto.yml` file:
+
+```markdown
+project:
+  type: website
+  output-dir: docs
+```
+
+Then preview or render the website
+
+```markdown
+quarto render mysite
+```
+
+2/ Upload and commit on your GitHub repository all the files contained in the website folder and not the website folder itself.
+
+Then in Settings > Pages choose:
+- `main` branch
+- `/docs` folder
+- and Save
+
+---
+class: title-slide, middle
+
+## Your turn!
+
+1/ Open the file `_quarto.yml` in Jupyter and modify it as follow:
+
+```markdown
+project:
+  type: website
+  output-dir: docs
+```
+
+Then preview or render the website
+
+```markdown
+quarto render mysite
+```
+
+2/ Upload and commit on your GitHub repository all the files contained in the website folder and not the website folder itself.
+
+Then in Settings > Pages choose:
+- `main` branch
+- `/docs` folder
+- and Save
+
+```{r}
+countdown(minutes = 5, warn_when = 60)
+```
+
 ---
 class: inverse, mline, left, middle
 
