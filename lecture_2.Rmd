@@ -117,7 +117,14 @@ class: title-slide, middle
 - Mac OS	
 - Windows
 
-2/ Open a terminal window and type `quarto check`
+2/ Open a terminal window and type `quarto check`. In the output, you should see the following lines:
+
+```markdown
+[✓] Checking Python 3 installation....OK
+
+[✓] Checking Jupyter engine render....OK
+```
+If not, let me know!
 
 ```{r}
 countdown(minutes = 5, warn_when = 60)
@@ -156,7 +163,7 @@ class: inverse, mline, center, middle
 
 ---
 
-# Output HTML
+# The YAML
 
 .pull-left[
 ### Simple
@@ -330,7 +337,7 @@ class: title-slide, middle
 - from here: https://quarto.org/docs/get-started/hello/jupyter.html
 - or by clicking here: <a href="https://quarto.org/docs/get-started/hello/_hello.ipynb" download="hello.ipynb" data-original-href="https://quarto.org/docs/get-started/hello/_hello.ipynb">Download hello.ipynb</a>
 
-2/ Open Jupyter Lab and drop the `hello.ipynb` in the list of files (left pane)
+2/ Open Jupyter Lab and drop the `hello.ipynb` in the list of files in Jupyter (left pane)
 
 3/ Open a new Terminal window (on Jupyter Lab or on your OS) and run the following instructions:
 
@@ -360,6 +367,10 @@ class: inverse, mline, center, middle
 Quarto Websites are a convenient way to publish groups of documents. Documents published as part of a website share navigational elements, rendering options, and visual style.
 
 Website navigation can be provided through a global navbar, a sidebar with links, or a combination of both for sites that have multiple levels of content. You can also enable full text search for websites.
+
+```{r}
+include_graphics("https://www.paulbarrs.com/wp-content/uploads/2017/09/painful.jpg")
+```
 
 ---
 class: title-slide, middle
@@ -419,11 +430,15 @@ This command is used to render the website by converting all the `.qmd` files to
 
 The website preview will open in a new web browser. As you edit and save `index.qmd` (or other files like `about.qmd`) the preview is automatically updated.
 
+```{r}
+include_graphics("https://ucsb-meds.github.io/creating-quarto-websites/media/rendered_site.png")
+```
+
 ---
 
 # qmd Files
 
-Unfortunately `.ipynb` or `.py` files cannot be used to build a website. 
+Unfortunately `.ipynb` files cannot be used to build a website. 
 
 Thankfully they can be converted to `.qmd` format by quarto with the instruction: 
 
@@ -432,7 +447,7 @@ quarto convert myfile.ipynb
 ```
 --
 
-`.qmd` are actually very similar to `.ipynb` tailored for quarto:
+`.qmd` files are actually very similar to `.ipynb` files and are tailored for quarto:
 - They have a yaml displayed between two series of `---` signs
 - They have markdown text
 - They can have code cell, also called chunks
@@ -452,6 +467,7 @@ class: title-slide, middle
 
 ## Your turn!
 
+.pull-left[
 1/ Open a new Terminal window (on Jupyter Lab or on your OS) and run the following instructions:
 
 ```markdown
@@ -459,7 +475,9 @@ quarto convert hello.ipynb
 ```
 
 2/ Drag and drop the file `hello.qmd` created in the root of the `mysite` folder
+]
 
+.pull-right[
 3/ Open the file `_quarto.yml` in Jupyter and modify it as follow:
 
 ```markdown
@@ -473,11 +491,12 @@ website:
       - hello.qmd
 ```
 
-4/ In the Terminal window, run the following instructions if it hasn't been done already
+4/ In the same Terminal window, run the following instructions:
 
 ```markdown
 quarto preview mysite
 ```
+]
 
 ```{r}
 countdown(minutes = 10, warn_when = 60)
@@ -494,11 +513,11 @@ class: inverse, mline, center, middle
 
 There are three ways to publish Quarto websites and documents to GitHub Pages:
 
-- Render sites on your local machine to the docs directory, check the rendered site into GitHub, and then configure your GitHub repo to publish from the docs directory.
+- **Render sites on your local machine to the docs directory**, check the rendered site into GitHub, and then configure your GitHub repo to publish from the docs directory.
 
-- Use the quarto publish command to publish content rendered on your local machine.
+- **Use the quarto publish command** to publish content rendered on your local machine.
 
-- Use a GitHub Action to automatically render your files (a single Quarto document or a Quarto project) and publish the resulting content whenever you push a source code change to your repository.
+- **Use a GitHub Action** to automatically render your files (a single Quarto document or a Quarto project) and publish the resulting content whenever you push a source code change to your repository.
 
 The simplest way to publish using GitHub Pages is to render to the docs directory and then check that directory into your repository.
 
@@ -506,9 +525,9 @@ The simplest way to publish using GitHub Pages is to render to the docs director
 
 # Requirements
 
-To publish using GitHub Pages, there are 2 requirements:
+To publish using GitHub Pages with this easy way, there are 3 requirements:
 
-1/ The output directory should be changed to a folder named `docs` in the `_quarto.yml` file:
+1/ Change the output directory folder to a folder named `docs` in the `_quarto.yml` file:
 
 ```markdown
 project:
@@ -522,9 +541,9 @@ Then preview or render the website
 quarto render mysite
 ```
 
-2/ Upload and commit on your GitHub repository all the files contained in the website folder and not the website folder itself.
+2/ Upload and commit on your GitHub repository all the files contained in the website folder, not the website folder itself.
 
-Then in Settings > Pages choose:
+3/ Then in **GitHub**, click **Settings** -> **Pages** choose:
 - `main` branch
 - `/docs` folder
 - and Save
@@ -542,15 +561,15 @@ project:
   output-dir: docs
 ```
 
-Then preview or render the website
+Then preview or render the website:
 
 ```markdown
 quarto render mysite
 ```
 
-2/ Upload and commit on your GitHub repository all the files contained in the website folder and not the website folder itself.
+2/ Upload and commit on your GitHub repository all the files contained in the website folder, not the website folder itself.
 
-Then in Settings > Pages choose:
+3/ Then in **GitHub**, click **Settings** -> **Pages** choose:
 - `main` branch
 - `/docs` folder
 - and Save
@@ -558,6 +577,73 @@ Then in Settings > Pages choose:
 ```{r}
 countdown(minutes = 5, warn_when = 60)
 ```
+
+---
+class: inverse, mline, center, middle
+
+# Bonus Slides: Customise your Website
+
+---
+
+# Customise the URL
+
+By default, the URL of your website will be: https://github-username.github.io/repository-name
+
+However if your repository is called `github-username.github.io`, your URL will be: https://github-username.github.io
+
+See for example:
+- https://github.com/damien-dupre/damien-dupre.github.io
+- https://damien-dupre.github.io/
+
+---
+
+# Customise the URL
+
+You can also buy a domain name with www.godaddy.com or competitors. 
+- In **GitHub**, click **Settings** -> **Pages** and fill your custom domain.
+- Add a file called CNAME in your repository with the domain name (e.g., https://github.com/garymckeown/ISRE24/blob/main/CNAME)
+- In the `_quarto.yml` file, add `site-url` and `resources`, for example:
+
+```markdown
+website:
+  title: "Conference of the International Society for Research on Emotion"
+  site-url: https://isre2024.org
+  
+resources:
+  - CNAME
+```
+
+See https://github.com/garymckeown/ISRE24/blob/main/_quarto.yml
+
+---
+
+# Customise the Design
+
+Quarto includes 25 different themes, see list here: https://quarto.org/docs/output-formats/html-themes.html
+
+Use of any of these themes via the `theme` option in the `_quarto.yml` file
+
+```markdown
+format:
+  html:
+    theme: united
+```
+
+--
+
+There are a set of options you can provide in document metadata to customize its appearance such as `max-width`, `mainfont`, `fontsize`, `fontcolor` or `backgroundcolor`.
+
+---
+
+# Customise the Pages
+
+1. Look at the gallery of quarto websites: https://quarto.org/docs/gallery/#websites
+
+2. Find a page that you like and find it in GitHub, for example:
+- https://www.mm218.dev/
+- https://github.com/mikemahoney218/mm218.dev/blob/main/index.qmd
+
+3. Adapt the code to your own website.
 
 ---
 class: inverse, mline, left, middle
