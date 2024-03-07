@@ -525,9 +525,10 @@ The simplest way to publish using GitHub Pages is to render to the docs director
 
 # Requirements
 
-To publish using GitHub Pages with this easy way, there are 3 requirements:
+To publish using GitHub Pages with this easy way, there are 4 requirements:
 
-1/ Change the output directory folder to a folder named `docs` in the `_quarto.yml` file:
+.pull-left[
+1/ **Change the output directory folder** to a folder named `docs` in the `_quarto.yml` file:
 
 ```markdown
 project:
@@ -541,19 +542,40 @@ Then preview or render the website
 quarto render mysite
 ```
 
-2/ Upload and commit on your GitHub repository all the files contained in the website folder, not the website folder itself.
+2/ **Upload and commit all the files contained in the website folder** on your GitHub repository, not the website folder itself.
+]
 
-3/ Then in **GitHub**, click **Settings** -> **Pages** choose:
+--
+
+.pull-right[
+3/ **Upload and commit a nojekyll file** that tells GitHub to not run its default html website processing
+
+You can download this `nojekyll` file here:
+
+```{r}
+downloadthis::download_file(
+  path = here::here("nojekyll"),
+  output_name = "nojekyll",
+  button_label = "Click here to download nojekyll",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+4/ Then in **GitHub**, click **Settings** -> **Pages** choose:
 - `main` branch
 - `/docs` folder
 - and Save
+]
 
 ---
 class: title-slide, middle
 
 ## Your turn!
 
-1/ Open the file `_quarto.yml` in Jupyter and modify it as follow:
+.pull-left[
+1/ **Change the output directory folder** to a folder named `docs` in the `_quarto.yml` file:
 
 ```markdown
 project:
@@ -561,18 +583,36 @@ project:
   output-dir: docs
 ```
 
-Then preview or render the website:
+Then preview or render the website
 
 ```markdown
 quarto render mysite
 ```
 
-2/ Upload and commit on your GitHub repository all the files contained in the website folder, not the website folder itself.
+2/ **Upload and commit all the files contained in the website folder** on your GitHub repository, not the website folder itself.
+]
 
-3/ Then in **GitHub**, click **Settings** -> **Pages** choose:
+.pull-right[
+3/ **Upload and commit a nojekyll file** that tells GitHub to not run its default html website processing
+
+You can download this `nojekyll` file here:
+
+```{r}
+downloadthis::download_file(
+  path = here::here("nojekyll"),
+  output_name = "nojekyll",
+  button_label = "Click here to download nojekyll",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+
+4/ Then in **GitHub**, click **Settings** -> **Pages** choose:
 - `main` branch
 - `/docs` folder
 - and Save
+]
 
 ```{r}
 countdown(minutes = 5, warn_when = 60)
