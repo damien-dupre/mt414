@@ -123,7 +123,7 @@ class: title-slide, middle
 ```
 If not, let me know!
 
-<div class="countdown" id="timer_808e8cb6" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_889d31af" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -343,7 +343,7 @@ and then:
 open hello.html
 ```
 
-<div class="countdown" id="timer_d085bf3d" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_b6a329e3" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -380,7 +380,7 @@ and then:
 quarto preview mysite
 ```
 
-<div class="countdown" id="timer_2ab46b41" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_af52ba3b" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -447,10 +447,9 @@ quarto convert myfile.ipynb
 Chunks are delimited by 3 backticks on each end ` ``` ` followed by the engine (`python`) between curly braces `{python}`  
 
 ````markdown
-```{python}
+``{python}
 print('Hello, world!')
-```
-```` 
+```````
 
 ---
 class: title-slide, middle
@@ -488,7 +487,7 @@ quarto preview mysite
 ```
 ]
 
-<div class="countdown" id="timer_7849b68c" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_0eb337db" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -510,16 +509,23 @@ There are three ways to publish Quarto websites and documents to GitHub Pages:
 
 - **Use a GitHub Action** to automatically render your files (a single Quarto document or a Quarto project) and publish the resulting content whenever you push a source code change to your repository.
 
-The simplest way to publish using GitHub Pages is to render to the docs directory and then check that directory into your repository.
+#### The simplest way to publish using GitHub Pages is to render to the docs directory and then upload that directory into your repository...
+
+--
+
+.pull-left[
+#### ... but it won't be as easy as it looks I'm afraid!
+]
+
+.pull-right[
+&lt;img src="http://techrights.org/wp-content/uploads/2021/10/github-dark-side.jpg" width="90%" /&gt;
+]
 
 ---
 
-# Requirements
+# Render the Website docs Folder
 
-To publish using GitHub Pages with this easy way, there are 4 requirements:
-
-.pull-left[
-1/ **Change the output directory folder** to a folder named `docs` in the `_quarto.yml` file:
+In the `_quarto.yml` file, simply **change the output directory folder** to a folder named `docs` as follow:
 
 ```markdown
 project:
@@ -527,29 +533,130 @@ project:
   output-dir: docs
 ```
 
-Then preview or render the website
+--
 
+Then preview or render the website:
+
+.pull-left[
 ```markdown
 quarto render mysite
 ```
+]
 
-2/ **Upload and commit all the files contained in the website folder** on your GitHub repository, not the website folder itself.
+.pull-right[
+```markdown
+quarto preview mysite
+```
 ]
 
 --
 
+.pull-left[
+Your website default folder should look like that → 
+
+Note: the old folder `_site` will not be used any more and is now useless.
+]
+
 .pull-right[
-3/ **Upload and commit a nojekyll file** that tells GitHub to not run its default html website processing
+&lt;img src="https://raw.githubusercontent.com/damien-dupre/img/main/mysite_docs.png" width="80%" /&gt;
+]
 
-You can download this `nojekyll` file here:
+---
 
+# Add a .nojekyll File
+
+Add a `.nojekyll` file to the root of your repository that tells GitHub Pages not to do additional processing of your published site using Jekyll (the GitHub default site generation tool):
+
+You can create an empty text file by yourself or you can download this `nojekyll` file here:
 <button class="btn btn-default" onclick="fetch(&#39;data:text/plain;base64,&#39;).then(res =&gt; res.blob()).then(blob =&gt; {&#10;      const downloadURL = window.URL.createObjectURL(blob);&#10;      const a = document.createElement(&#39;a&#39;);&#10;      a.style.display = &#39;none&#39;; // Hide the link&#10;      document.body.appendChild(a);&#10;      a.href = downloadURL;&#10;      a.download = &#39;nojekyll.&#39;;&#10;      a.click();&#10;      window.URL.revokeObjectURL(downloadURL);&#10;      document.body.removeChild(a);&#10;      return false;&#10;    });"><i class="fa fa-save"></i> Click here to download nojekyll</button>
 
-4/ Then in **GitHub**, click **Settings** -&gt; **Pages** choose:
-- `main` branch
-- `/docs` folder
-- and Save
+
+
+--
+
+You could also create it from the terminal when the website folder is the current directory:
+
+.pull-left[
+Mac/Linux:
+```markdown
+cd mysite
+touch .nojekyll
+```
 ]
+
+.pull-right[
+Windows:
+```markdown
+cd mysite
+copy NUL .nojekyll
+```
+]
+
+---
+
+# Upload your Files to GitHub
+
+In a perfect world, you could just drag and drop all the files in GitHub at once like this:
+
+&lt;img src="https://raw.githubusercontent.com/damien-dupre/img/main/github_drop_mysite.gif" width="90%" /&gt;
+
+---
+
+# Upload your Files to GitHub
+
+However, sometimes drag and drop in GitHub doesn't work (server limitations)
+
+![](https://raw.githubusercontent.com/damien-dupre/img/main/commit_failed.png)&lt;!-- --&gt;
+
+If your upload from the website fail, there are some alternatives
+
+---
+
+# Upload your Files to GitHub
+
+### Solution 1: Use GitHub.dev
+
+Replace `.com` in your repository url to `.dev`
+
+For example:
+- https://github.com/damiendupre/mysite
+- https://github.dev/damiendupre/mysite
+
+Then, in **Source Control**, drag and drop your files and click **Commit &amp; Push**
+
+![](https://raw.githubusercontent.com/damien-dupre/img/main/github_com_dev.png)&lt;!-- --&gt;
+
+---
+
+# Upload your Files to GitHub
+
+### Solution 2: Use Git
+
+GitHub is nothing without Git and you should install from https://git-scm.com/
+
+&lt;img src="https://pbs.twimg.com/media/Fgg4vIWWIAAUJiq.jpg" width="60%" /&gt;
+
+---
+
+# Upload your Files to GitHub
+
+### Solution 2: Use Git
+
+When GitHub suggests ways how to upload files, it gives instructions to **create a new repository on the command line** with git.
+
+For example:
+
+```markdown
+cd mysite #if not done yet
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/damiendupre/mysite.git
+git push -u origin main
+```
+
+You should see all your files uploaded in your GitHub repository
 
 ---
 class: title-slide, middle
@@ -565,7 +672,7 @@ project:
   output-dir: docs
 ```
 
-Then preview or render the website
+Then, preview or render the website
 
 ```markdown
 quarto render mysite
@@ -581,15 +688,15 @@ You can download this `nojekyll` file here:
 
 <button class="btn btn-default" onclick="fetch(&#39;data:text/plain;base64,&#39;).then(res =&gt; res.blob()).then(blob =&gt; {&#10;      const downloadURL = window.URL.createObjectURL(blob);&#10;      const a = document.createElement(&#39;a&#39;);&#10;      a.style.display = &#39;none&#39;; // Hide the link&#10;      document.body.appendChild(a);&#10;      a.href = downloadURL;&#10;      a.download = &#39;nojekyll.&#39;;&#10;      a.click();&#10;      window.URL.revokeObjectURL(downloadURL);&#10;      document.body.removeChild(a);&#10;      return false;&#10;    });"><i class="fa fa-save"></i> Click here to download nojekyll</button>
 
-4/ Then in **GitHub**, click **Settings** -&gt; **Pages** choose:
+4/ Finally, in **GitHub**, click **Settings** -&gt; **Pages** choose:
 - `main` branch
 - `/docs` folder
 - and Save
 ]
 
-<div class="countdown" id="timer_c8f5c4e3" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_c4d9c90a" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 ---
@@ -658,6 +765,65 @@ There are a set of options you can provide in document metadata to customize its
 - https://github.com/mikemahoney218/mm218.dev/blob/main/index.qmd
 
 3. Adapt the code to your own website.
+
+---
+
+# Customise the Interactivity
+
+Adding interactivity to an article is a great way to help readers explore the concepts and data you are presenting more deeply. There are three ways to add interactive components to Quarto documents:
+
+- Create custom JavaScript visualizations using Observable JS.
+
+- Use the Shiny R or Python package to add interactivity.
+
+- Incorporate Jupyter Widgets or htmlwidgets (for the Jupyter and Knitr engines, respectively) into your document.
+
+Learn more on how to improve the interactivity here: [https://quarto.org/docs/interactive/](https://quarto.org/docs/interactive/)
+
+---
+
+# Use Different Coding Languages
+
+Quarto can run different coding languages like SQL or Observable JS
+
+Just replace the code name in the chunk curly brackets:
+
+.pull-left[
+````markdown
+``{sql}
+SELECT *
+FROM mtcars
+```````
+]
+
+.pull-right[
+````markdown
+``{ojs}
+Array(3) [1, 2, 3]
+```````
+]
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> **Warning**: The code inside the chunk will be running and if an error is generated, the website will not be rendered.
+
+--
+
+If you want to show the code, without running it, you could use the chunk option `eval=FALSE` or use the code `markdown` without curly brackets:
+
+.pull-left[
+````markdown
+``{sql, eval=FALSE}
+SELECT *
+FROM mtcars
+```````
+]
+
+.pull-right[
+````markdown
+``markdown
+SELECT *
+FROM mtcars
+```````
+]
 
 ---
 class: inverse, mline, left, middle
