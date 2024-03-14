@@ -457,7 +457,7 @@ quarto convert myfile.ipynb
 Chunks are delimited by 3 backticks on each end ` ``` ` followed by the engine (`python`) between curly braces `{python}`  
 
 ````markdown
-`r ''```{python}
+`r ''````{python}
 print('Hello, world!')
 ```````
 
@@ -828,7 +828,7 @@ Just replace the code name in the chunk curly brackets:
 
 .pull-left[
 ````markdown
-`r ''```{sql}
+`r ''````{sql}
 SELECT *
 FROM mtcars
 ```````
@@ -836,7 +836,7 @@ FROM mtcars
 
 .pull-right[
 ````markdown
-`r ''```{ojs}
+`r ''````{ojs}
 Array(3) [1, 2, 3]
 ```````
 ]
@@ -849,7 +849,7 @@ If you want to show the code, without running it, you could use the chunk option
 
 .pull-left[
 ````markdown
-`r ''```{sql, eval=FALSE}
+`r ''````{sql, eval=FALSE}
 SELECT *
 FROM mtcars
 ```````
@@ -857,7 +857,7 @@ FROM mtcars
 
 .pull-right[
 ````markdown
-`r ''```markdown
+`r ''````markdown
 SELECT *
 FROM mtcars
 ```````
